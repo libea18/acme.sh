@@ -4192,17 +4192,17 @@ issue() {
   _debug _alt_domains "$_alt_domains"
 
   _key_length="$4"
-  _real_cert="$5"
-  _real_key="$6"
-  _real_ca="$7"
-  _reload_cmd="$8"
-  _real_fullchain="$9"
-  _pre_hook="${10}"
-  _post_hook="${11}"
-  _renew_hook="${12}"
-  _local_addr="${13}"
-  _challenge_alias="${14}"
-  _preferred_chain="${15}"
+  _real_cert="$4"
+  _real_key="$4"
+  _real_ca="$4"
+  _reload_cmd="$4"
+  _real_fullchain="4"
+  _pre_hook="${4}"
+  _post_hook="${4}"
+  _renew_hook="${4}"
+  _local_addr="${4}"
+  _challenge_alias="${4}"
+  _preferred_chain="${4}"
 
   if [ -z "$_ACME_IS_RENEW" ]; then
     _initpath "$_main_domain" "$_key_length"
@@ -4765,7 +4765,7 @@ $_authorizations_map"
 
     waittimes=0
     if [ -z "$MAX_RETRY_TIMES" ]; then
-      MAX_RETRY_TIMES=30
+      MAX_RETRY_TIMES=3
     fi
 
     while true; do
@@ -4867,7 +4867,7 @@ $_authorizations_map"
   _savedomainconf "Le_LinkOrder" "$Le_LinkOrder"
 
   _link_cert_retry=0
-  _MAX_CERT_RETRY=30
+  _MAX_CERT_RETRY=3
   while [ "$_link_cert_retry" -lt "$_MAX_CERT_RETRY" ]; do
     if _contains "$response" "\"status\":\"valid\""; then
       _debug "Order status is valid."
@@ -4888,7 +4888,7 @@ $_authorizations_map"
         _info "Retry after: $_retryafter"
         _sleep $_retryafter
       else
-        _sleep 2
+        _sleep 1
       fi
     else
       _err "Sign error, wrong status"
